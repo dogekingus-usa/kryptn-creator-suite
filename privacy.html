@@ -3,35 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - KRYPTN</title>
+    <title>Privacy Protocol | KRYPTN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 2rem; }
-        h1 { border-bottom: 2px solid #ff3366; padding-bottom: 10px; }
-        .back-link { display: block; margin-top: 2rem; color: #ff3366; text-decoration: none; font-weight: bold; }
+        :root {
+            --primary: #ff0050;
+            --bg: #030303;
+            --surface: #0a0a0a;
+            --text-main: #ffffff;
+            --text-dim: #777;
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .glow-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -10%, #151515 0%, #030303 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 100px 24px;
+        }
+
+        nav { margin-bottom: 3rem; }
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #fff 0%, #444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status {
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            margin-bottom: 4rem;
+            display: block;
+        }
+
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        p, li { color: #bbb; font-size: 1rem; }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.5rem; }
+
+        footer {
+            text-align: center;
+            padding: 6rem 0;
+            color: #222;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p>Last Updated: April 2026</p>
-    
-    <p>KRYPTN ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use the KRYPTN Creator Suite.</p>
+    <div class="glow-overlay"></div>
 
-    <h2>1. Data We Collect</h2>
-    <p>We only collect data necessary to provide our services. This includes:</p>
-    <ul>
-        <li><strong>TikTok Account Information:</strong> Through the TikTok Login Kit, we receive your public profile information and authorized scopes to enable video uploading.</li>
-        <li><strong>Media Assets:</strong> We process the video files you choose to upload to TikTok. These are processed locally or temporarily and are not stored on our servers longer than necessary for the upload.</li>
-    </ul>
+    <div class="container">
+        <nav><a href="index.html">← Back to System</a></nav>
 
-    <h2>2. How We Use Data</h2>
-    <p>Your data is used solely to facilitate the scheduling and posting of content to your TikTok account as directed by you. We do not sell or share your data with third parties.</p>
+        <header>
+            <h1>Privacy Protocol</h1>
+            <span class="status">KRYPTN Creator Suite // Deployment Secure</span>
+        </header>
 
-    <h2>3. Data Security</h2>
-    <p>We implement industry-standard security measures to protect your information. Since KRYPTN operates as a local developer toolkit, your credentials (like Client Secrets) should be managed securely on your local environment.</p>
+        <div class="section">
+            <h2>1. Data Architecture</h2>
+            <p>KRYPTN operates as a local infrastructure tool. We prioritize the "Principle of Least Privilege" regarding your data:</p>
+            <ul>
+                <li><strong>API Credentials:</strong> Your TikTok Client Key and Secret are stored locally in your environment. We never transmit or store these on our own servers.</li>
+                <li><strong>Media Assets:</strong> Video files are processed within your production pipeline. We do not maintain copies of your creative assets after the deployment is complete.</li>
+            </ul>
+        </div>
 
-    <h2>4. Third-Party Services</h2>
-    <p>Our tool interacts with TikTok via official APIs. We encourage you to review the <a href="https://www.tiktok.com/legal/privacy-policy" target="_blank">TikTok Privacy Policy</a>.</p>
+        <div class="section">
+            <h2>2. Platform Integration</h2>
+            <p>Our suite utilizes the official TikTok Login Kit and Content Posting API. By using KRYPTN, you authorize the suite to:</p>
+            <ul>
+                <li>Access your public profile information for authentication.</li>
+                <li>Upload and manage video content as directed by your local commands.</li>
+            </ul>
+        </div>
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+        <div class="section">
+            <h2>3. Third-Party Governance</h2>
+            <p>Data transmission occurs directly between your local instance and TikTok's official servers. We recommend reviewing the <a href="https://www.tiktok.com/legal/privacy-policy" style="color:var(--primary); text-decoration:none;">TikTok Privacy Policy</a> for information on how they handle data post-deployment.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Security Standards</h2>
+            <p>We implement strict encryption protocols for all data in transit. As a developer-focused toolkit, we ensure that session tokens and OAuth2 data are handled according to industry-standard security practices.</p>
+        </div>
+
+        <footer>
+            © 2026 KRYPTN HQ // ALL PROTOCOLS ENFORCED.
+        </footer>
+    </div>
 </body>
 </html>

@@ -3,148 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KRYPTN Creator Suite</title>
+    <title>KRYPTN | The Next Generation of Creator Workflow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --text-color: #e0e0e0;
-            --accent-color: #ff3366;
-            --card-bg: #1a1a1a;
+            --primary: #ff0050; /* TikTok Red */
+            --secondary: #00f2ea; /* TikTok Cyan */
+            --bg: #050505;
+            --surface: #121212;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.03);
         }
+
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
             margin: 0;
-            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradient */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        nav {
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 10%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        header {
+
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; }
+        .logo span { color: var(--primary); }
+
+        .hero {
             text-align: center;
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, #111 0%, #0d0d0d 100%);
-            border-bottom: 1px solid #333;
+            padding: 120px 20px;
+            animation: fadeIn 1s ease-out;
         }
-        header h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #fff;
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        header p.subtitle {
+
+        .hero p {
             font-size: 1.2rem;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 0.5rem;
-            font-weight: bold;
-        }
-        header p.desc {
-            font-size: 1.1rem;
-            color: #aaa;
+            color: var(--text-dim);
             max-width: 600px;
-            margin: 1.5rem auto 0;
+            margin: 0 auto 2rem;
         }
-        main {
-            flex: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        section h2 {
-            font-size: 1.8rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .features {
+
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            padding: 4rem 10%;
         }
+
         .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 6px;
-            border: 1px solid #333;
-            transition: border-color 0.3s ease;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
         }
+
         .card:hover {
-            border-color: var(--accent-color);
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
         }
-        .card h3 {
-            margin-top: 0;
-            color: #fff;
-            font-size: 1.3rem;
-        }
+
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
+        .card p { color: var(--text-dim); line-height: 1.7; }
+
         footer {
+            padding: 4rem 10%;
             text-align: center;
-            padding: 3rem 2rem;
-            background-color: #050505;
-            border-top: 1px solid #333;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 4rem;
         }
-        footer a {
-            color: #888;
+
+        .footer-links a {
+            color: var(--text-dim);
             text-decoration: none;
             margin: 0 1rem;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
-        footer a:hover {
-            color: var(--accent-color);
-        }
-        .copyright {
-            color: #444;
+
+        .footer-links a:hover { color: #fff; }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(255, 0, 80, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
             font-size: 0.8rem;
-            margin-top: 2rem;
-            letter-spacing: 1px;
-        }
-        @media (max-width: 600px) {
-            .features {
-                grid-template-columns: 1fr;
-            }
-            header h1 {
-                font-size: 2.5rem;
-            }
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>KRYPTN</h1>
-        <p class="subtitle">Creator Suite</p>
-        <p class="desc">Autonomous AI Content Pipeline for Digital Production.</p>
+    <div class="bg-glow"></div>
+
+    <nav>
+        <div class="logo">KRYP<span>TN</span></div>
+    </nav>
+
+    <header class="hero">
+        <span class="badge">V1.0 - Now in Production</span>
+        <h1>Scale Your Creative Output</h1>
+        <p>Advanced asset management and cloud distribution for digital producers and music artists.</p>
     </header>
 
-    <main>
-        <section>
-            <h2>App Purpose</h2>
-            <p>The KRYPTN Creator Suite is a specialized developer toolkit that bridges the gap between music production and social media distribution. Designed for seamless integration with the TikTok API, it empowers creators to automate their release workflows, ensuring consistent and high-fidelity video deployments directly from their local environment.</p>
-        </section>
-
-        <section class="features">
-            <div class="card">
-                <h3>AI-Driven Automation</h3>
-                <p>Utilize autonomous agents to manage your content lifecycle, automatically parsing metadata, tags, and formatting for optimal upload preparation.</p>
-            </div>
-            <div class="card">
-                <h3>Direct Integration</h3>
-                <p>Securely connect your TikTok profile via Login Kit to push atmospheric and cinematic content directly to your feed using the official Content Posting API.</p>
-            </div>
-        </section>
+    <main class="grid">
+        <div class="card">
+            <h3>Workflow Integration</h3>
+            <p>Connect your production environment directly to the TikTok ecosystem. We handle the technical heavy lifting so you can focus on the art.</p>
+        </div>
+        <div class="card">
+            <h3>Secure Deployment</h3>
+            <p>Industry-standard OAuth2 protocols ensure your account remains safe. We never store credentials; we only facilitate authorized uploads.</p>
+        </div>
+        <div class="card">
+            <h3>Asset Optimization</h3>
+            <p>Our engine ensures every video meets platform-specific bitrate and resolution standards for maximum clarity and reach.</p>
+        </div>
     </main>
 
     <footer>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="tos.html">Terms of Service</a>
-        <p class="copyright">&copy; 2026 KRYPTN HQ. ALL RIGHTS RESERVED.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="tos.html">Terms of Service</a>
+        </div>
+        <p style="color: #444; margin-top: 2rem; font-size: 0.8rem;">© 2026 KRYPTN HQ. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
